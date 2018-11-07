@@ -1,0 +1,294 @@
+{
+  "basemaps": {
+    "OSM classique (tuiles STSISI)": "http://osm.psi.minint.fr/{z}/{x}/{y}.png",
+    "Positron": "https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png",
+    "OSM classique gris": "http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png",
+    "OSM hot": "http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
+    "Vue satellite": "http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    "OSM gris clair": "https://api.tiles.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=sk.eyJ1IjoicmhhbmthIiwiYSI6ImNqOWZueXNnNzJzdmsyd3F5NHVzZ2h5MTcifQ.uSqyxHwafkSdGTtls6iDIQ",
+    "Noir & noir": "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png"
+
+  },
+  "services_field": "LIBELLE_UNITE",
+  "filters": {
+    "PV électroniques et accidents" : {
+      "Période temporelle": {
+        "field_name_pve": "DATE_JOUR_REEL_INFRACTION",
+        "field_name_acc": "date",
+        "type": "slider",
+        "specificFilter": true,
+        "bounds": {
+         "pve": [[2015, 1], [2018, 9]],
+         "acc": [[2005, 1], [2018, 10]]
+        },
+        "pve": [[2017, 1], [2018, 9]],
+        "acc": [[2012, 1], [2018, 10]]
+      },
+      "Jour" : {
+        "field_name_pve": "LIBELLE_JOUR_INFRACTION",
+        "field_name_acc": "LIBELLE_JOUR",
+        "values": {
+          "Lundi": true,
+          "Mardi": true,
+          "Mercredi": true,
+          "Jeudi": true,
+          "Vendredi": true,
+          "Samedi": true,
+          "Dimanche": true
+        }
+      },
+      "Plage horaire" : {
+        "field_name_acc": "LIBELLE_PLAGE_HORAIRE",
+        "field_name_pve": "LIBELLE_PLAGE_HORAIRE",
+        "values": {
+          "00 - 01 h": true,
+          "01 - 02 h": true,
+          "02 - 03 h": true,
+          "03 - 04 h": true,
+          "04 - 05 h": true,
+          "05 - 06 h": true,
+          "06 - 07 h": true,
+          "07 - 08 h": true,
+          "08 - 09 h": true,
+          "09 - 10 h": true,
+          "10 - 11 h": true,
+          "11 - 12 h": true,
+          "12 - 13 h": true,
+          "13 - 14 h": true,
+          "14 - 15 h": true,
+          "15 - 16 h": true,
+          "16 - 17 h": true,
+          "17 - 18 h": true,
+          "18 - 19 h": true,
+          "19 - 20 h": true,
+          "20 - 21 h": true,
+          "21 - 22 h": true,
+          "22 - 23 h": true,
+          "23 - 24 h": true
+        }
+      }
+    },
+    "PV électroniques" : {
+      "LIBELLE_FAMILLE" : {
+        "display_name": "Famille Infraction",
+        "field_name_pve": "LIBELLE_FAMILLE",
+        "values": {
+          "Règles administratives": true,
+          "Vitesse": true,
+          "Règles de conduite": true,
+          "Ceinture et casque": true,
+          "Priorité de passage - intersections": true,
+          "Etat ou équipement des utilisateurs et des véhicules": true,
+          "Alcool": true,
+          "Eclairage et signalisation": true,
+          "Croisements et dépassements": true,
+          "Autres infractions à la circulation routière": true
+        }
+      },
+      "LIBELLE_CORPS" : {
+        "display_name": "Service",
+        "field_name_pve": "LIBELLE_CORPS",
+        "values": {
+          "Police Nationale": "true",
+          "Gendarmerie Nationale": "true",
+          "CONCENTRATEUR PM": "true"
+        }
+      },
+      "COD_GENRE" : {
+        "display_name": "Type de véhicule",
+        "field_name_pve": "COD_GENRE",
+        "values": {
+          "VP": true,
+          "TAXI": true,
+          "TCP": true,
+          "MOTO": true,
+          "CTTE": true,
+          "PL": true,
+          "CYCLO": true,
+          "CYCLE": true,
+          "PIETON": true,
+          "AUTRE": true
+        },
+        "labels": {
+          "VP": "Voiture",
+          "CTTE": "Camionnette",
+          "CYCLO": "Cyclomoteur",
+          "PL": "Poids lourd",
+          "MOTO": "Moto",
+          "AUTRE": "Autre",
+          "CYCLE": "Cycle",
+          "PIETON": "Piéton",
+          "TAXI": "Taxi",
+          "TCP": "Transport en commun de personnes"
+        }
+      },
+      "LIBELLE_TYPE_VOIE_DEDUIT": {
+        "display_name": "Type de voirie",
+        "field_name_pve": "LIBELLE_TYPE_VOIE_DEDUIT",
+        "values": {
+          "Autoroute": "true",
+          "Route Nationale": "true",
+          "Autre Route": "true"
+        }
+      }
+    },
+    "Accidents" : {
+      "Voiture" : {
+        "field_name_acc": "has_voiture",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans voiture",
+          "some": "Accident avec voiture(s)"
+        }
+      },
+      "Poids lourd" : {
+        "field_name_acc": "has_poidslourd",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans poids lourd",
+          "some": "Accident avec poids lourd(s)"
+        }
+      },
+      "Moto" : {
+        "field_name_acc": "has_deuxrouesmotorises",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans moto",
+          "some": "Accident avec moto(s)"
+        }
+      },
+      "Vélo" : {
+        "field_name_acc": "has_velo",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans vélo",
+          "some": "Accident avec vélo(s)"
+        }
+      },
+      "Piéton" : {
+        "field_name_acc": "has_pietons",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans piéton",
+          "some": "Accident avec piéton(s)"
+        }
+      },
+      "Autre véhicule" : {
+        "field_name_acc": "has_vehiculeautre",
+        "description": "Tous les autres véhicules (tracteur, bus, quad, engin spécial, train)",
+        "type": "vehiculeFilter",
+        "values": {
+          "true": true,
+          "false": true
+        },
+        "choices": {
+          "any": "Indifférent",
+          "none": "Accident sans autre véhicule",
+          "some": "Accident avec autre véhicule(s)"
+        }
+      },
+      "Gravité" : {
+        "field_name_acc": "gravite_accident",
+        "description": "Tué: au moins une personne a été tuée. Hospitalisé: au moins une personne a été hospitalisée. Blessé léger: uniquement des blessés légers.",
+        "values": {
+          "tué": true,
+          "hospitalisé": true,
+          "blessé léger": true
+        }
+      },
+      "Type de route" : {
+        "field_name_acc": "catr",
+        "values": {
+          "autoroute": true,
+          "route nationale": true,
+          "route départementale": true,
+          "voie communale": true,
+          "autre route": true,
+          "parking": true,
+          "hors réseau public": true
+        }
+      },
+      "Luminosité" : {
+        "field_name_acc": "lum",
+        "values": {
+          "plein jour": true,
+          "nuit avec éclairage public allumé": true,
+          "nuit sans éclairage public": true,
+          "crépuscule ou aube": true,
+          "nuit avec éclairage public non allumé": true
+        }
+      },
+      "Lieu" : {
+        "field_name_acc": "agg",
+        "values": {
+          "en agglomération": true,
+          "hors agglomération": true
+        }
+      },
+      "Intersection" : {
+        "field_name_acc": "int",
+        "values": {
+          "hors intersection": true,
+          "intersection en X": true,
+          "intersection en T": true,
+          "giratoire": true,
+          "autre intersection": true,
+          "intersection en Y": true,
+          "place": true,
+          "place": true,
+          "passage à niveau": true
+        }
+      },
+      "Conditions météo" : {
+        "field_name_acc": "atm",
+        "values": {
+          "météo normale": true,
+          "pluie légère": true,
+          "temps couvert": true,
+          "pluie forte": true,
+          "temps éblouissant": true,
+          "neige - grêle": true,
+          "autre météo": true,
+          "vent fort - tempête": true
+        }
+      },
+      "Collisions" : {
+        "field_name_acc": "col",
+        "values": {
+          "autre collision": true,
+          "2 véhicules côté": true,
+          "Sans collision": true,
+          "2 véhicules par l'arrière": true,
+          "2 véhicules frontal": true,
+          "3+ véhicules autre": true,
+          "3+ véhicules en chaîne": true
+        }
+      }
+    }
+  }
+}
